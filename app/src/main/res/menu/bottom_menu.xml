@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:title="Inicio"
         android:icon="@drawable/ic_baseline_home_24"
-        android:id="@+id/mainFragment"/>
-    <item android:title="Canchas"
-        android:icon="@drawable/ic_baseline_where_to_vote_24"
-        android:id="@+id/sucursalesFragment"
+        android:id="@+id/homeFragment"
         />
-    <item android:title="Mis Reservas"
+    <item android:title="Mis reservas"
+        android:icon="@drawable/ic_baseline_drafts_24"
+        android:id="@+id/reservasFragment"
+        />
+    <item android:title="Partidos"
         android:icon="@drawable/ic_baseline_sports_soccer_24"
-        android:id="@+id/reservasFragment"/>
+        android:id="@+id/partidosFragment"
+        />
 </menu>
