@@ -20,4 +20,14 @@
         android:name="com.keymobile.tucancha.ReservasFragment"
         android:label="fragment_reservas"
         tools:layout="@layout/fragment_reservas" />
+    <fragment
+        android:id="@+id/mensajesFragment"
+        android:name="com.keymobile.tucancha.MensajesFragment"
+        android:label="fragment_mensajes"
+        tools:layout="@layout/fragment_mensajes" />
+    <fragment
+        android:id="@+id/perfilFragment"
+        android:name="com.keymobile.tucancha.PerfilFragment"
+        android:label="fragment_perfil"
+        tools:layout="@layout/fragment_perfil" />
 </navigation>

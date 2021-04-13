@@ -7,8 +7,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ProgressBar
-import androidx.core.view.isInvisible
-import androidx.core.view.isVisible
 
 
 class LoginActivity : AppCompatActivity() {
