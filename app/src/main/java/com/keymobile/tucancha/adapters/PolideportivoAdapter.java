@@ -23,6 +23,13 @@ public class PolideportivoAdapter extends RecyclerView.Adapter<PolideportivoAdap
     private Context context;
     private ArrayList<Polideportivo> listapolideportivos = new ArrayList<>();
 
+    public ArrayList<Polideportivo> getListapolideportivos() {
+        return listapolideportivos;
+    }
+
+    public void setListapolideportivos(ArrayList<Polideportivo> listapolideportivos) {
+        this.listapolideportivos = listapolideportivos;
+    }
 
     public PolideportivoAdapter(Context context, ArrayList<Polideportivo> polideportivos) {
         this.context = context;
@@ -38,10 +45,12 @@ public class PolideportivoAdapter extends RecyclerView.Adapter<PolideportivoAdap
     }
 
     @Override
-    public void onBindViewHolder(@NonNull PolideportivoAdapter.PolideportivoView holder, int position) {
+    public void onBindViewHolder(@NonNull PolideportivoView holder, int position) {
+
         Polideportivo poli = listapolideportivos.get(position);
-        holder.tvNombre.setText(poli.getNombre());
-        holder.tvCanchas.setText(poli.getCanchas());
+        holder.tvNombre.setText(String.valueOf(poli.getNombre()));
+
+        holder.tvCanchas.setText(String.valueOf(poli.getCanchas()));
         holder.tvRating.setText(String.valueOf(poli.getRating()));
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,7 +74,7 @@ public class PolideportivoAdapter extends RecyclerView.Adapter<PolideportivoAdap
         public PolideportivoView(@NonNull View itemView) {
             super(itemView);
             tvNombre = itemView.findViewById(R.id.tvNombre);
-            tvCanchas = itemView.findViewById(R.id.tvNombre);
+            tvCanchas = itemView.findViewById(R.id.tvCanchas);
             tvRating = itemView.findViewById(R.id.tvRating);
             ivPolideportivo = itemView.findViewById(R.id.ivPolideportivo);
 

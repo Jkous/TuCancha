@@ -3,13 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/home_navigation"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/mainFragment">
 
-    <fragment
-        android:id="@+id/homeFragment"
-        android:name="com.keymobile.tucancha.HomeFragment"
-        android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/partidosFragment"
         android:name="com.keymobile.tucancha.PartidosFragment"
@@ -30,4 +25,9 @@
         android:name="com.keymobile.tucancha.PerfilFragment"
         android:label="fragment_perfil"
         tools:layout="@layout/fragment_perfil" />
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.keymobile.tucancha.MainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main" />
 </navigation>

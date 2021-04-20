@@ -1,11 +1,17 @@
 package com.keymobile.tucancha.entidades;
 
+import java.util.ArrayList;
+
 public class Polideportivo {
 
-    private int id;
+    private String id;
     private String nombre;
     private int canchas;
     private double rating;
+
+
+    public Polideportivo() {
+    }
 
     public Polideportivo(String nombre, int canchas, double rating) {
         this.nombre = nombre;
@@ -13,18 +19,18 @@ public class Polideportivo {
         this.rating = rating;
     }
 
-    public Polideportivo(int id, String nombre, int canchas, double rating) {
+    public Polideportivo(String id, String nombre, int canchas, double rating) {
         this.id = id;
         this.nombre = nombre;
         this.canchas = canchas;
         this.rating = rating;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

@@ -4,7 +4,7 @@
 
     <item android:title="Inicio"
         android:icon="@drawable/ic_baseline_home_24"
-        android:id="@+id/homeFragment"
+        android:id="@+id/mainFragment"
         />
     <item android:title="Mis reservas"
         android:icon="@drawable/ic_baseline_drafts_24"
@@ -13,5 +13,9 @@
     <item android:title="Partidos"
         android:icon="@drawable/ic_baseline_sports_soccer_24"
         android:id="@+id/partidosFragment"
+        />
+    <item android:title="Mi Perfil"
+        android:icon="@drawable/ic_baseline_person_outline_24"
+        android:id="@+id/perfilFragment"
         />
 </menu>
