@@ -14,7 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TuCancha"
         android:usesCleartextTraffic="true">
-        <activity android:name=".UpsertCanchaActivity"></activity>
+        <activity android:name=".NuevaReservaActivity"></activity>
+        <activity android:name=".UpsertCanchaActivity" />
         <activity android:name=".MantPolideportivoActivity" />
         <activity android:name=".MantCanchaActivity" />
         <activity android:name=".SettingsActivity" />
