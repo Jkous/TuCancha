@@ -9,10 +9,20 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
+import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.keymobile.tucancha.entidades.Polideportivo
+import com.keymobile.tucancha.utils.UsuarioSesion
 
 
 class LoginActivity : AppCompatActivity() {
+
+
+    private final var firebaseDatabase: FirebaseDatabase? = FirebaseDatabase.getInstance()
+    private final var databaseReference: DatabaseReference? = null
 
     private lateinit var auth: FirebaseAuth
 
@@ -46,7 +56,7 @@ class LoginActivity : AppCompatActivity() {
 
         val currentUser = auth.currentUser
         if(currentUser != null)
-            LoginSuccess()
+            LoginSuccess(currentUser)
     }
 
     private fun loginUser() {
@@ -59,8 +69,8 @@ class LoginActivity : AppCompatActivity() {
                     if (task.isSuccessful) {
                         // Sign in success, update UI with the signed-in user's information
                         Log.d("SUCCESS", "signInWithEmail:success")
-                        //val user = auth.currentUser
-                        LoginSuccess()
+                        val user = auth.currentUser
+                        LoginSuccess(user)
 
                     } else {
                         // If sign in fails, display a message to the user.
@@ -82,11 +92,30 @@ class LoginActivity : AppCompatActivity() {
 
     }
 
-    private fun LoginSuccess() {
+    private fun LoginSuccess(user:FirebaseUser) {
 
-        val intent = Intent(applicationContext, MainActivity::class.java)
-        startActivity(intent)
-        finish()
+        FirebaseApp.initializeApp(this)
+        //firebaseDatabase = FirebaseDatabase.getInstance()
+        databaseReference = firebaseDatabase?.reference
+
+
+        databaseReference?.child("InfoUsuario")?.equalTo("uid", user.uid)?.get()?.addOnSuccessListener {
+            dataSnapshot ->
+            //var is_admin = dataSnapshot.child("is_admin").getValue(Boolean::class.java)
+            var us:UsuarioSesion? = dataSnapshot.getValue(UsuarioSesion::class.java)
+
+            if (us?.is_admin != null) {
+                UsuarioSesion.configureUsuarioSesion(auth.uid, us?.is_admin)
+            } else {
+                UsuarioSesion.configureUsuarioSesion(auth.uid, false)
+            }
+
+
+            val intent = Intent(applicationContext, MainActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
     }
 
 }

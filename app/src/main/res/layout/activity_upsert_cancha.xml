@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UpsertCanchaActivity"
+    android:layout_margin="12dp">
+
+
+    <TextView
+        android:id="@+id/tvTitulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="45dp"
+        android:textSize="20sp"
+        android:text="Cancha"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="36dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/btnGuardarCancha"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitulo">
+
+
+        <EditText
+            android:id="@+id/etNombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/edittext_input"
+            android:hint="Nombre cancha"
+            android:inputType="textPersonName"
+            android:padding="12dp"
+            android:selectAllOnFocus="true" />
+
+        <EditText
+            android:id="@+id/etDireccion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/edittext_input"
+            android:hint="Dirección"
+            android:inputType="textPersonName"
+            android:padding="12dp"
+            android:selectAllOnFocus="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:layout_marginBottom="14dp"
+            android:text="Días" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ToggleButton
+                android:id="@+id/dia_l"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:layout_marginRight="8dp"
+                android:background="@drawable/dia_checkbox"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:text="M"
+                android:textColor="@color/white"
+                android:textOff="L"
+                android:textOn="L" />
+
+
+            <ToggleButton
+                android:id="@+id/dia_ma"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:layout_marginRight="8dp"
+                android:background="@drawable/dia_checkbox"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:text="M"
+                android:textColor="@color/white"
+                android:textOff="M"
+                android:textOn="M" />
+
+
+            <ToggleButton
+                android:id="@+id/dia_mi"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:layout_marginRight="8dp"
+                android:background="@drawable/dia_checkbox"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:text="M"
+                android:textColor="@color/white"
+                android:textOff="M"
+                android:textOn="M" />
+
+
+            <ToggleButton
+                android:id="@+id/dia_j"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:layout_marginRight="8dp"
+                android:background="@drawable/dia_checkbox"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:text="M"
+                android:textColor="@color/white"
+                android:textOff="J"
+                android:textOn="J" />
+
+
+            <ToggleButton
+                android:id="@+id/dia_v"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:layout_marginRight="8dp"
+                android:background="@drawable/dia_checkbox"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:text="M"
+                android:textColor="@color/white"
+                android:textOff="V"
+                android:textOn="V" />
+
+
+            <ToggleButton
+                android:id="@+id/dia_s"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:layout_marginRight="8dp"
+                android:background="@drawable/dia_checkbox"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:text="M"
+                android:textColor="@color/white"
+                android:textOff="S"
+                android:textOn="S" />
+
+
+            <ToggleButton
+                android:id="@+id/dia_d"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:layout_marginRight="8dp"
+                android:background="@drawable/dia_checkbox"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:text="M"
+                android:textColor="@color/white"
+                android:textOff="D"
+                android:textOn="D" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnAddHora"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:text="Agregar Hora"
+            android:textSize="10sp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvCostoHora"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnGuardarCancha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="Guardar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

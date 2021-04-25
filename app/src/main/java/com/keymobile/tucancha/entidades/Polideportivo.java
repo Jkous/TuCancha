@@ -7,23 +7,28 @@ public class Polideportivo {
     private String id;
     private String nombre;
     private int canchas;
-    private double rating;
-
+    private int likes;
+    private ArrayList<String> listacanchas;
 
     public Polideportivo() {
     }
 
-    public Polideportivo(String nombre, int canchas, double rating) {
+    public Polideportivo(String nombre, int canchas, int likes) {
         this.nombre = nombre;
         this.canchas = canchas;
-        this.rating = rating;
+        this.likes = likes;
     }
 
-    public Polideportivo(String id, String nombre, int canchas, double rating) {
+    public Polideportivo(String id, String nombre, int canchas, int likes) {
         this.id = id;
         this.nombre = nombre;
         this.canchas = canchas;
-        this.rating = rating;
+        this.likes = likes;
+    }
+
+    @Override
+    public String toString() {
+        return nombre;
     }
 
     public String getId() {
@@ -50,11 +55,19 @@ public class Polideportivo {
         this.canchas = canchas;
     }
 
-    public double getRating() {
-        return rating;
+    public int getLikes() {
+        return likes;
     }
 
-    public void setRating(double rating) {
-        this.rating = rating;
+    public void setLikes(int likes) {
+        this.likes = likes;
+    }
+
+    public ArrayList<String> getListacanchas() {
+        return listacanchas;
+    }
+
+    public void setListacanchas(ArrayList<String> listacanchas) {
+        this.listacanchas = listacanchas;
     }
 }

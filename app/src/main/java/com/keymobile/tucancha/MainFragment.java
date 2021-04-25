@@ -20,7 +20,15 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.keymobile.tucancha.adapters.CanchaAdapter;
 import com.keymobile.tucancha.adapters.PolideportivoAdapter;
+import com.keymobile.tucancha.entidades.Cancha;
 import com.keymobile.tucancha.entidades.Polideportivo;
 import com.keymobile.tucancha.utils.GsonArrayRequest;
 import com.keymobile.tucancha.utils.GsonRequest;
@@ -36,9 +44,17 @@ import java.util.ArrayList;
  */
 public class MainFragment extends Fragment {
 
+    FirebaseDatabase firebaseDatabase;
+    DatabaseReference databaseReference;
+
     RecyclerView rvPolideportivos;
     ArrayList<Polideportivo> polideportivos = new ArrayList<>();
     PolideportivoAdapter poliadapter;
+
+
+    RecyclerView rvCanchas;
+    ArrayList<Cancha> lista_canchas = new ArrayList<>();
+    CanchaAdapter canchaAdapter;
 
     public MainFragment() {
         // Required empty public constructor
@@ -56,6 +72,10 @@ public class MainFragment extends Fragment {
         if (getArguments() != null) {
 
         }
+        FirebaseApp.initializeApp(getContext());
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference();
+
     }
 
     @Override
@@ -75,7 +95,14 @@ public class MainFragment extends Fragment {
         rvPolideportivos.setAdapter(poliadapter);
         rvPolideportivos.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
 
-        ListarPolideportivos();
+        rvCanchas = view.findViewById(R.id.rvCanchas);
+        canchaAdapter = new CanchaAdapter(getContext(), lista_canchas);
+        rvCanchas.setAdapter(canchaAdapter);
+        rvCanchas.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
+
+        CargarPolideportivos();
+        CargarCanchas();
+        //ListarPolideportivos();
     }
 
     private void ListarPolideportivos() {
@@ -102,5 +129,55 @@ public class MainFragment extends Fragment {
     }
 
 
+    private void CargarPolideportivos() {
+
+        databaseReference.child("polideportivos").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                polideportivos.clear();
+
+                for (DataSnapshot item:snapshot.getChildren()) {
+                    Polideportivo p = item.getValue(Polideportivo.class);
+                    polideportivos.add(p);
+                }
+
+                poliadapter.setListapolideportivos(polideportivos);
+                poliadapter.notifyDataSetChanged();
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+    }
+
+
+    private void CargarCanchas() {
+
+        databaseReference.child("canchas").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                lista_canchas.clear();
+
+                for (DataSnapshot item:snapshot.getChildren()) {
+                    Cancha c = item.getValue(Cancha.class);
+                    lista_canchas.add(c);
+                }
+
+                canchaAdapter.setLista(lista_canchas);
+                canchaAdapter.notifyDataSetChanged();
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+    }
 
 }

@@ -7,12 +7,18 @@ import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.keymobile.tucancha.utils.UsuarioSesion
 
 class RegisterActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
 
+    private final var firebaseDatabase: FirebaseDatabase? = FirebaseDatabase.getInstance()
+    private final var databaseReference: DatabaseReference? = null
 
     private var etEmail: EditText? = null
     private var etPass: EditText? = null
@@ -28,6 +34,7 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun asignarReferencias() {
+        InicializarFirebase()
 
         etEmail = findViewById(R.id.username)
         etPass = findViewById(R.id.password)
@@ -58,9 +65,8 @@ class RegisterActivity : AppCompatActivity() {
                         Log.d("SIGNUP", "createUserWithEmail:success")
                         val user = auth.currentUser
 
-                        val intent = Intent(applicationContext,LoginActivity::class.java)
-                        startActivity(intent)
-                        finish()
+                        RegistrarDatosAdicionalesusuario(user.uid, false)
+
 
                     } else {
                         Log.w("SIGNUP", "createUserWithEmail:failure", task.exception)
@@ -71,6 +77,27 @@ class RegisterActivity : AppCompatActivity() {
 
     }
 
+    private fun InicializarFirebase() {
 
+        FirebaseApp.initializeApp(this)
+        //firebaseDatabase = FirebaseDatabase.getInstance()
+        databaseReference = firebaseDatabase?.reference
+
+    }
+
+    private fun RegistrarDatosAdicionalesusuario(uid:String, is_admin:Boolean) {
+
+        val user = UsuarioSesion.configureUsuarioSesion(uid, is_admin)
+
+        databaseReference?.child("InfoUsuario")?.child(user.uid)?.setValue(user)?.addOnCompleteListener {
+
+            val intent = Intent(applicationContext,LoginActivity::class.java)
+            startActivity(intent)
+            finish()
+
+        }
+
+
+    }
 
 }

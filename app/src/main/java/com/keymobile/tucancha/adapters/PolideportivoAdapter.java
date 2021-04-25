@@ -51,7 +51,7 @@ public class PolideportivoAdapter extends RecyclerView.Adapter<PolideportivoAdap
         holder.tvNombre.setText(String.valueOf(poli.getNombre()));
 
         holder.tvCanchas.setText(String.valueOf(poli.getCanchas()));
-        holder.tvRating.setText(String.valueOf(poli.getRating()));
+        holder.tvRating.setText(String.valueOf(poli.getLikes()));
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

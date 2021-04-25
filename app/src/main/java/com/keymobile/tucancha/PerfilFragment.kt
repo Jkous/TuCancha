@@ -1,13 +1,16 @@
 package com.keymobile.tucancha
 
 import android.content.Intent
+import android.opengl.Visibility
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
 import com.google.firebase.auth.FirebaseAuth
+import com.keymobile.tucancha.utils.UsuarioSesion
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -24,12 +27,16 @@ class PerfilFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+    private var is_admin: Boolean?= false;
+
     private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         auth = FirebaseAuth.getInstance()
+
+
 
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
@@ -46,6 +53,10 @@ class PerfilFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val txtDemo = view.findViewById<TextView>(R.id.textView2)
+        txtDemo.text = UsuarioSesion.getInstance().is_admin.toString()
+
+
         val btnlogout = view.findViewById<Button>(R.id.btn_logout)
         btnlogout.setOnClickListener { view ->
             FirebaseAuth.getInstance().signOut()
@@ -53,7 +64,25 @@ class PerfilFragment : Fragment() {
             startActivity(intent)
             activity?.finish()
         }
+
+        val btn_administrar = view.findViewById<Button>(R.id.btnAdministrar)
+
+
+        if(auth.uid == "qNjd0eh47UOJRRiB2VeefKglP572") {
+
+            btn_administrar.setOnClickListener {
+                v ->
+                val intent = Intent(context, SettingsActivity::class.java)
+                startActivity(intent)
+            }
+
+            btn_administrar.visibility = View.VISIBLE
+        }
+
+
     }
+
+
 
     companion object {
         /**
