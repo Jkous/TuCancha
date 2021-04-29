@@ -63,6 +63,7 @@ public class MainFragment extends Fragment {
     public static MainFragment newInstance(String param1, String param2) {
         MainFragment fragment = new MainFragment();
 
+
         return fragment;
     }
 
@@ -96,7 +97,7 @@ public class MainFragment extends Fragment {
         rvPolideportivos.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
 
         rvCanchas = view.findViewById(R.id.rvCanchas);
-        canchaAdapter = new CanchaAdapter(getContext(), lista_canchas);
+        canchaAdapter = new CanchaAdapter(getActivity(), getContext(), lista_canchas);
         rvCanchas.setAdapter(canchaAdapter);
         rvCanchas.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
 

@@ -7,6 +7,8 @@ public class Reserva {
     private String id;
     private String UidUsuario;
     private Date FechaReserva;
+    private int HoraReserva;
+    private double PrecioReserva;
     private Date FechaCreacion;
     private String Estado;
 
@@ -61,5 +63,21 @@ public class Reserva {
 
     public void setIdCancha(String idCancha) {
         IdCancha = idCancha;
+    }
+
+    public int getHoraReserva() {
+        return HoraReserva;
+    }
+
+    public void setHoraReserva(int horaReserva) {
+        HoraReserva = horaReserva;
+    }
+
+    public double getPrecioReserva() {
+        return PrecioReserva;
+    }
+
+    public void setPrecioReserva(double precioReserva) {
+        PrecioReserva = precioReserva;
     }
 }

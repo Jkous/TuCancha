@@ -13,4 +13,5 @@
     <string name="login_failed">"Login failed"</string>
 
     <string name="URL_API_REST">https://hidden-garden-29613.herokuapp.com/</string>
+    <string name="title_activity_mapa_canchas">Map</string>
 </resources>

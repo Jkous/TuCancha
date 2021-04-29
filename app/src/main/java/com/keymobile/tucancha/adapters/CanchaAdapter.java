@@ -1,6 +1,8 @@
 package com.keymobile.tucancha.adapters;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ServerValue;
+import com.keymobile.tucancha.NuevaReservaActivity;
 import com.keymobile.tucancha.R;
 import com.keymobile.tucancha.entidades.Cancha;
 import com.keymobile.tucancha.entidades.CostoHora;
@@ -25,7 +28,7 @@ import java.util.ArrayList;
 
 public class CanchaAdapter  extends RecyclerView.Adapter<CanchaAdapter.CanchaView>   {
 
-
+    private Activity activity;
     private Context context;
     private ArrayList<Cancha> lista_items = new ArrayList<>();
 
@@ -37,7 +40,8 @@ public class CanchaAdapter  extends RecyclerView.Adapter<CanchaAdapter.CanchaVie
         this.lista_items = lista_items;
     }
 
-    public CanchaAdapter(Context context, ArrayList<Cancha> polideportivos) {
+    public CanchaAdapter(Activity activity, Context context, ArrayList<Cancha> polideportivos) {
+        this.activity = activity;
         this.context = context;
         this.lista_items = polideportivos;
     }
@@ -91,7 +95,10 @@ public class CanchaAdapter  extends RecyclerView.Adapter<CanchaAdapter.CanchaVie
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "Clicked " + cancha.getNombre(), Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(activity, NuevaReservaActivity.class);
+                intent.putExtra(NuevaReservaActivity.KEY_ID_CANCHA, cancha.getId());
+                activity.startActivity(intent);
+                //Toast.makeText(context, "Clicked " + cancha.getNombre(), Toast.LENGTH_LONG).show();
             }
         });
 
