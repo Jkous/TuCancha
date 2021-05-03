@@ -8,6 +8,7 @@
          location permissions for the "MyLocation" functionality.
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -34,8 +35,11 @@
             android:value="@string/google_maps_key" />
 
         <activity
+            android:name=".RutaPartidoActivity"
+            android:label="@string/title_activity_ruta_partido"></activity>
+        <activity
             android:name=".MapaCanchasActivity"
-            android:label="@string/title_activity_mapa_canchas"></activity>
+            android:label="@string/title_activity_mapa_canchas" />
         <activity android:name=".NuevaReservaActivity" />
         <activity android:name=".UpsertCanchaActivity" />
         <activity android:name=".MantPolideportivoActivity" />

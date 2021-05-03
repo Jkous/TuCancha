@@ -214,7 +214,7 @@ public class NuevaReservaActivity extends AppCompatActivity {
                     reserva.setIdCancha(IdCancha);
                     reserva.setEstado("Reservado");
 
-                    databaseReference.child("reservas").child(IdCancha).setValue(reserva)
+                    databaseReference.child("reservas").child(reserva.getId()).setValue(reserva)
                             .addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {

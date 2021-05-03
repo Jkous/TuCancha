@@ -1,10 +1,12 @@
 package com.keymobile.tucancha;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -42,12 +44,12 @@ public class UpsertCanchaActivity extends AppCompatActivity {
 
     public static final String KEY_ID_CANCHA = "KEY_ID_CANCHA";
 
-    String IdCancha;
+    Cancha cancha = new Cancha();
 
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
 
-    Button btnAddHora, btnGuardarCancha;
+    Button btnAddHora, btnGuardarCancha, btnMapa;
     EditText etNombre, etDireccion;
 
     ToggleButton dia1, dia2, dia3, dia4, dia5, dia6, dia7;
@@ -63,10 +65,10 @@ public class UpsertCanchaActivity extends AppCompatActivity {
         AsignarReferencias();
 
         Intent intent = getIntent();
-        IdCancha = intent.getStringExtra(KEY_ID_CANCHA);
+        cancha.setId(intent.getStringExtra(KEY_ID_CANCHA));
 
         InicializarFirebase();
-        ConsultarDatosCancha(IdCancha);
+        ConsultarDatosCancha();
     }
 
     private void AsignarReferencias() {
@@ -98,6 +100,15 @@ public class UpsertCanchaActivity extends AppCompatActivity {
             }
         });
 
+        btnMapa = findViewById(R.id.btnMapa);
+        btnMapa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(UpsertCanchaActivity.this, MapaCanchasActivity.class);
+                //startActivity(intent);
+                startActivityForResult(intent, 2);
+            }
+        });
 
         rvCostoHoras = findViewById(R.id.rvCostoHora);
         horasAdapter = new CostoHoraAdapter(UpsertCanchaActivity.this, horas);
@@ -115,9 +126,9 @@ public class UpsertCanchaActivity extends AppCompatActivity {
 
     }
 
-    private void ConsultarDatosCancha(String idCancha) {
+    private void ConsultarDatosCancha() {
 
-        databaseReference.child("canchas").child(IdCancha)//.orderByChild("id").equalTo(idCancha)
+        databaseReference.child("canchas").child(cancha.getId())//.orderByChild("id").equalTo(idCancha)
                 .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -162,8 +173,7 @@ public class UpsertCanchaActivity extends AppCompatActivity {
 
     private void GuardarDatosCancha() {
 
-        Cancha cancha = new Cancha();
-        cancha.setId(IdCancha);
+        //cancha.setId(IdCancha);
         cancha.setNombre(String.valueOf(etNombre.getText()));
         cancha.setDireccion(String.valueOf(etDireccion.getText()));
         cancha.setHoras(horas);
@@ -257,6 +267,17 @@ public class UpsertCanchaActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
+        if(requestCode == 2 && resultCode == Activity.RESULT_OK) {
+            Toast.makeText(getApplicationContext(), "123456789", Toast.LENGTH_SHORT).show();
 
+            etDireccion.setText(data.getStringExtra("direccion"));
+            cancha.setLatitude(data.getDoubleExtra("latitude", 0f));
+            cancha.setLongitude(data.getDoubleExtra("longitude", 0f));
+        }
+
+    }
 }

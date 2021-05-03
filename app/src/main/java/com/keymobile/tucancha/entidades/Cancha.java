@@ -16,6 +16,7 @@ public class Cancha {
     private ArrayList<Dia> dias;
     private ArrayList<CostoHora> horas;
 
+
     @Override
     public String toString() {
         return this.nombre;

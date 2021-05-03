@@ -6,11 +6,6 @@
     app:startDestination="@id/mainFragment">
 
     <fragment
-        android:id="@+id/partidosFragment"
-        android:name="com.keymobile.tucancha.PartidosFragment"
-        android:label="fragment_partidos"
-        tools:layout="@layout/fragment_partidos" />
-    <fragment
         android:id="@+id/mensajesFragment"
         android:name="com.keymobile.tucancha.MensajesFragment"
         android:label="fragment_mensajes"
@@ -25,4 +20,9 @@
         android:name="com.keymobile.tucancha.MainFragment"
         android:label="fragment_main"
         tools:layout="@layout/fragment_main" />
+    <fragment
+        android:id="@+id/partidosFragment"
+        android:name="com.keymobile.tucancha.PartidosFragment"
+        android:label="fragment_partidos"
+        tools:layout="@layout/fragment_partidos" />
 </navigation>

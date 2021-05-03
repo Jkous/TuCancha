@@ -14,6 +14,8 @@ public class Reserva {
 
     private String IdCancha;
 
+    private Cancha DataCancha;
+
     public Reserva() {
     }
 
@@ -79,5 +81,18 @@ public class Reserva {
 
     public void setPrecioReserva(double precioReserva) {
         PrecioReserva = precioReserva;
+    }
+
+    public Cancha getDataCancha() {
+        return DataCancha;
+    }
+
+    public void setDataCancha(Cancha dataCancha) {
+        DataCancha = dataCancha;
+    }
+
+    @Override
+    public String toString() {
+        return "Reserva = " + HoraReserva ;
     }
 }
