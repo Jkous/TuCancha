@@ -47,6 +47,13 @@
                         android:layout_margin="6dp"
                         android:text="Cancha" />
 
+                    <TextView
+                        android:id="@+id/tvHora"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="6dp"
+                        android:text="00:00" />
+
                     <ImageButton
                         android:id="@+id/ibLocalizarCancha"
                         android:layout_width="wrap_content"

@@ -53,8 +53,6 @@ class PerfilFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val txtDemo = view.findViewById<TextView>(R.id.textView2)
-        txtDemo.text = UsuarioSesion.getInstance().is_admin.toString()
 
 
         val btnlogout = view.findViewById<Button>(R.id.btn_logout)

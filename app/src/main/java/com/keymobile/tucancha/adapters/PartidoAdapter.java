@@ -56,6 +56,7 @@ public class PartidoAdapter extends RecyclerView.Adapter<PartidoAdapter.PartidoV
         //holder.tvDescripcion.setText(String.format("%02d:00 - %02d:00", hora.getHoraReserva(), hora.getHoraReserva()+1));
         holder.tvCancha.setText(partido.getDataCancha().getNombre() );
         holder.tvDireccion.setText(partido.getDataCancha().getDireccion() );
+        holder.tvHora.setText(String.format("%02d:00 - %02d:00", partido.getHoraReserva(), partido.getHoraReserva()+1) );
 
         holder.ibLocalizarCancha.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,13 +89,14 @@ public class PartidoAdapter extends RecyclerView.Adapter<PartidoAdapter.PartidoV
 
     public class PartidoView extends RecyclerView.ViewHolder {
 
-        TextView tvCancha, tvDireccion;
+        TextView tvCancha, tvDireccion, tvHora;
         ImageButton ibLocalizarCancha;
 
         public PartidoView(@NonNull View itemView) {
             super(itemView);
             tvCancha = itemView.findViewById(R.id.tvCancha);
             tvDireccion = itemView.findViewById(R.id.tvDireccion);
+            tvHora = itemView.findViewById(R.id.tvHora);
             ibLocalizarCancha = itemView.findViewById(R.id.ibLocalizarCancha);
 
         }
