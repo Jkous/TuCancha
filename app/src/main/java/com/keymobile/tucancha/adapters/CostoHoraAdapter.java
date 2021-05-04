@@ -46,13 +46,13 @@ public class CostoHoraAdapter extends RecyclerView.Adapter<CostoHoraAdapter.Cost
     public void onBindViewHolder(@NonNull CostoHoraView holder, int position) {
 
         CostoHora hora = lista_items.get(position);
-        holder.tvHora.setText(String.valueOf(hora.getHora()));
+        holder.tvHora.setText(String.format("%02d:00 - %02d:00", hora.getHora(), hora.getHora()+1));
 
-        holder.tvTarifa.setText(String.valueOf(hora.getPrecio()));
+        holder.tvTarifa.setText(String.format("S/ %#.2f", hora.getPrecio()));
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "Clicked " + String.valueOf(hora.getHora()), Toast.LENGTH_LONG).show();
+                Toast.makeText(context, String.format("%02d:00 - %02d:00", hora.getHora(), hora.getHora()+1), Toast.LENGTH_LONG).show();
             }
         });
     }

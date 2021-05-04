@@ -70,9 +70,7 @@
                 android:layout_width="45dp"
                 android:layout_marginLeft="12dp"
                 android:layout_height="match_parent"
-                android:text=""
-                android:background="@drawable/circle"
-                android:backgroundTint="@color/accent"
+                android:background="@drawable/ic_baseline_my_location_24"
                 android:textSize="10sp" />
         </LinearLayout>
 
@@ -203,6 +201,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="right"
             android:text="Agregar Hora"
+            android:backgroundTint="@color/accent"
             android:textSize="10sp" />
 
         <androidx.recyclerview.widget.RecyclerView
@@ -219,6 +218,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
+        android:backgroundTint="@color/accent"
         android:text="Guardar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

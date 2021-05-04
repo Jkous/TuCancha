@@ -66,7 +66,6 @@ public class MapaCanchasActivity extends FragmentActivity implements OnMapReadyC
             @Override
             public void onClick(View v) {
                 LatLng centerMap = mMap.getCameraPosition().target;
-                Toast.makeText(MapaCanchasActivity.this, String.valueOf(centerMap.latitude) + " > " + String.valueOf(centerMap.longitude), Toast.LENGTH_SHORT ).show();
 
                 Intent intent = new Intent();
                 intent.putExtra("direccion", String.valueOf(tvDireccion.getText()));
@@ -76,7 +75,7 @@ public class MapaCanchasActivity extends FragmentActivity implements OnMapReadyC
                 setResult(Activity.RESULT_OK, intent);
                 finish();
 
-                //Toast.makeText(MapaCanchasActivity.this, String.valueOf(position_marker.latitude) + " > " + String.valueOf(position_marker.longitude), Toast.LENGTH_SHORT ).show();
+
             }
         });
 
@@ -107,11 +106,15 @@ public class MapaCanchasActivity extends FragmentActivity implements OnMapReadyC
 
         mMap.getUiSettings().setZoomControlsEnabled(true);
 
+        LatLng chorrillos = new LatLng(-12.1823365, -77.0004542);
+
         //mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(position_marker, 16));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(chorrillos));
         mMap.animateCamera(CameraUpdateFactory.zoomTo(16));
-        //mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
         mMap.setOnCameraIdleListener(this);
         enableMyLocation();
+
+        findCurrentPlace();
     }
 
     private void enableMyLocation() {
@@ -140,11 +143,20 @@ public class MapaCanchasActivity extends FragmentActivity implements OnMapReadyC
 
     private void getPositionAddress() {
 
+        //LatLng centerMap = mMap.getCameraPosition().target;
 
-        LatLng centerMap = mMap.getCameraPosition().target;
-        Toast.makeText(MapaCanchasActivity.this, String.valueOf(centerMap.latitude) + " > " + String.valueOf(centerMap.longitude), Toast.LENGTH_SHORT ).show();
-
-        findCurrentPlace();
+        //findCurrentPlace();
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+        findCurrentPlaceWithPermissions();
     }
 
     private void findCurrentPlace() {
@@ -194,7 +206,6 @@ public class MapaCanchasActivity extends FragmentActivity implements OnMapReadyC
                 });
         currentPlaceTask.addOnFailureListener(
                 (exception) -> {
-                    Log.d("LOCATION ERROR", exception.getMessage());
                     exception.printStackTrace();
                     //tvDireccion.setText(exception.getMessage());
                 });
